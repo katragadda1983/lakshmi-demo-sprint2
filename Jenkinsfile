@@ -1,12 +1,5 @@
 pipeline {
 	agent any
-	environment {
-		NEXUS_VERSION='nexus3'
-		NEXUS_PROTOCOL='http'
-		NEXUS_URL='34.68.9.91:8081/'
-		NEXUS_REPOSITORY='DevOps'
-		NEXUS_CREDENTIALS_ID='admin'
-	}
 	stages {
 		stage('Build')
 		{
@@ -32,11 +25,23 @@ pipeline {
 		}
 		stage('Publish')
 		{
-			steps{
-				echo 'publishing'
+			steps {
+			nexusArtifactUploader {
+			nexusVersion('nexus3')
+			protocol('http')
+			nexusUrl('34.68.9.91:8081/')
+			groupId('DevOps')
+			version('${BUILD_NUMBER}_SPRINT3')
+			repository('DevOps')
+			credentialsId('admin')
+			artifact {
+				artifactId('SPRINT3')
+				type('war')
+				file('project/target/project-1.0-RAMA.war')
+				}
 			}
 		}
 	}
 
-
+	}
 }
