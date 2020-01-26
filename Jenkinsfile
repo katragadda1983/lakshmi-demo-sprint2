@@ -11,7 +11,9 @@ pipeline {
 	
 		stage('Code Download')
 		{
-			checkout SCM;
+			steps{
+				checkout SCM;
+			}
 		}
 	}
 
