@@ -9,7 +9,7 @@ pipeline {
 	}
 	stages {
 	
-		stage(Code Download)
+		stage('Code Download')
 		{
 			checkout SCM;
 		}
