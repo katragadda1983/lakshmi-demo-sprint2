@@ -5,7 +5,7 @@ pipeline {
 		{
 			steps{
 				
-				sh 'mvn clean package'
+				sh 'mvn package'
 			}
 		}
 	
@@ -26,18 +26,18 @@ pipeline {
 		stage('Publish')
 		{
 			steps {
-			nexusArtifactUploader {
-			nexusVersion('nexus3')
-			protocol('http')
-			nexusUrl('34.68.9.91:8081/')
-			groupId('DevOps')
-			version('${BUILD_NUMBER}_SPRINT3')
-			repository('DevOps')
-			credentialsId('admin')
-			artifact {
-				artifactId('SPRINT3')
-				type('war')
-				file('project/target/project-1.0-RAMA.war')
+				nexusArtifactUploader {
+				nexusVersion('NEXUS3')
+				protocol('HTTP')
+				nexusUrl('34.68.9.91:8081/')
+				groupId('DevOps')
+				version('${BUILD_NUMBER}_SPRINT3')
+				repository('DevOps')
+				credentialsId('admin')
+				artifact {
+					artifactId('SPRINT3')
+					type('war')
+					file('project/target/project-1.0-RAMA.war')
 				}
 			}
 		}
