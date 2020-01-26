@@ -9,10 +9,12 @@ pipeline {
 	}
 	stages {
 	
-		stage('Code Download')
+		stage('SonarAnalysis')
 		{
 			steps{
-				checkout SCM;
+				withSonarQubeEnv('sonarqube'){
+					sh 'mvn sonar:sonar'
+				}
 			}
 		}
 	}
