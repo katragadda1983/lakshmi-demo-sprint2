@@ -26,21 +26,7 @@ pipeline {
 		stage('Publish')
 		{
 			steps {
-				nexusArtifactUploader(
-				nexusVersion: 'nexus3',
-				protocol: 'http',
-				nexusUrl: '34.68.9.91:8081/',
-				groupId: 'Pipeline',
-				version: '${BUILD_NUMBER}_SPRINT3',
-				repository: 'DevOps',
-				credentialsId: 'admin',
-				artifacts: [
-					[artifactId: 'SPRINT3',
-						classifier: '',
-						file: 'project/target/project-1.0-RAMA.war',
-						type: 'war']
-					]
-				)
+				nexusArtifactUploader artifacts: [[artifactId: 'SPRINT3', classifier: '', file: 'project/target/project-1.0-RAMA.war', type: 'war']], credentialsId: 'Nexus', groupId: 'Pipeline', nexusUrl: '34.68.9.91:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'DevOps', version: '${BUILD_NUMBER}_SPRINT3'
 			}
 		}
 	}
