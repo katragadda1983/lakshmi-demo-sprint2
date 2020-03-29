@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	environment {
-	    PROJECT = 'My First Project'
+	    PROJECT = 'leafy-oxide-260319'
         CLUSTER = 'cluster-sprint6-k8s'
         LOCATION = 'us-central1-c'
         AUTH = 'gcp-creds'
@@ -44,7 +44,7 @@ pipeline {
 		stage('Deploy') { 
                 steps{
                    echo "Deployment started on k8s cluster ..."
-		           sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
+		           sh "sed -i 's/tag/${env.BUILD_ID}/g' deployment.yaml"
                    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT, clusterName: env.CLUSTER, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.AUTH, verifyDeployments: true])
 		           echo "Deployment Finished ..."
             }
