@@ -3,8 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: mywebapp
- labels:
-  app: mywebapp
 spec:
  replicas: 2
  selector:
@@ -25,11 +23,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp
+  name: mywebapp
 spec:
   type: LoadBalancer
   selector:
-    app: webapp
+    app: mywebapp
   ports:
     - protocol: TCP
       port: 6767
