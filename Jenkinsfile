@@ -27,9 +27,10 @@ pipeline {
 		stage('PublishImage')
 		{
 			steps {
-				
-			    withDockerRegistry(credentialsId: 'docker-hub', url: 'https://hub.docker.com/') {
-				    img.push("${env.BUILD_ID}")
+				script {
+				    withDockerRegistry(credentialsId: 'docker-hub', url: 'https://hub.docker.com/') {
+					    img.push("${env.BUILD_ID}")
+				    }
 				}
 			}
 		
