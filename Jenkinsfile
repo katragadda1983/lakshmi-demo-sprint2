@@ -19,20 +19,19 @@ pipeline {
 		stage('BuildImage')
 		{
 			steps {
-				
 			    script {
-		            img = docker.build("katragadda1983/mywebapp:${env.BUILD_ID}")
-                	}
+		            	img = docker.build("katragadda1983/mywebapp:${env.BUILD_ID}")
+                		}
+			}
 		}
 		stage('PublishImage')
 		{
 			steps {
 				
 			    withDockerRegistry(credentialsId: 'docker-hub', url: 'https://hub.docker.com/') {
-				    img.push()
+				    img.push("${env.BUILD_ID}")
 				}
 			}
 		
 		}
-	}
 }
