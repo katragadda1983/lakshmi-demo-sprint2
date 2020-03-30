@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: mywebappgcr
+ name: mywebapp
 spec:
  replicas: 2
  selector:
   matchLabels:
-   app: mywebappgcr
+   app: mywebapp
  template:
   metadata: 
    labels:
-    app: mywebappgcr
+    app: mywebapp
   spec:
    containers:
-   - name: mywebappgcr
+   - name: mywebapp
      image: gcr.io/leafy-oxide-260319/mywebappgcr:tag
      ports:
      - containerPort: 8080
@@ -23,11 +23,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mywebappgcr
+  name: mywebapp
 spec:
   type: LoadBalancer
   selector:
-    app: mywebappgcr
+    app: mywebapp
   ports:
     - protocol: TCP
       port: 7676
