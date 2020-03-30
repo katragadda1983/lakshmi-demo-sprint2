@@ -26,15 +26,16 @@ pipeline {
 		{
 			steps {
 			    script {
-		            	img = docker.build("katragadda1983/mywebapp:${env.BUILD_ID}")
-                		}
+		            	//img = docker.build("katragadda1983/mywebapp:${env.BUILD_ID}")
+				img = docker.build("gcr.io/leafy-oxide-260319/mywebappgcr:${env.BUILD_ID}")
+			    }
 			}
 		}
 		stage('PublishImage')
 		{
 			steps {
 				script {
-				    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+				    docker.withRegistry('https://gcr.io', 'gcr:gcp-creds') {
 					    img.push("${env.BUILD_ID}")
 				    }
 				}
