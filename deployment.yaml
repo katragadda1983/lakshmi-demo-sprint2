@@ -15,7 +15,7 @@ spec:
   spec:
    containers:
    - name: mywebappgcr
-     image: katragadda1983/mywebappgcr:tag
+     image: gcr.io/leafy-oxide-260319/mywebappgcr:tag
      ports:
      - containerPort: 8080
 
